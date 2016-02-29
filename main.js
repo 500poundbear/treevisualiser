@@ -3,7 +3,7 @@ $(document).ready(function () {
           function BuildVerticaLTree(treeData, treeContainerDom) {
               var margin = { top: 40, right: 120, bottom: 20, left: 120 };
               var width = 960 - margin.right - margin.left;
-              var height = 500 - margin.top - margin.bottom;
+              var height = 800 - margin.top - margin.bottom;
 
               var i = 0, duration = 750;
               var tree = d3.layout.tree()
@@ -122,8 +122,8 @@ $(document).ready(function () {
                   update(d);
               }
           }
-
-          var treeData =
+var treeData ={"name":"1","parent":"null","children":[{"name":"2","parent":"1","children":[{"name":"4","parent":"2","children":[{"name":"5","parent":"4","children":[{},{"name":"F","parent":"5","children":[]}]},{"name":"5","parent":"4","children":[{},{"name":"6","parent":"5","children":[{},{"name":"H","parent":"6","children":[]}]}]}]},{"name":"4","parent":"2","children":[{"name":"3","parent":"4","children":[{"name":"E","parent":"3","children":[]},{"name":"5","parent":"3","children":[{},{"name":"D","parent":"5","children":[]}]}]},{"name":"5","parent":"4","children":[{"name":"3","parent":"5","children":[{},{"name":"4","parent":"3","children":[{},{"name":"B","parent":"4","children":[]}]}]},{"name":"6","parent":"5","children":[{},{"name":"G","parent":"6","children":[]}]}]}]}]},{"name":"2","parent":"1","children":[{"name":"3","parent":"2","children":[{},{"name":"5","parent":"3","children":[{},{"name":"6","parent":"5","children":[{},{"name":"C","parent":"6","children":[]}]}]}]},{"name":"3","parent":"2","children":[{},{"name":"4","parent":"3","children":[{},{"name":"5","parent":"4","children":[{},{"name":"A","parent":"5","children":[]}]}]}]}]}]};
+ var treeData2 =
       {
           "name": "Top Level",
           "parent": "null",
