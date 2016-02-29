@@ -9,7 +9,6 @@ jsonfile.readFile(file, function(err, obj) {
 
     //Clean tree
     var cleantree = cleanTree(treeNode);
-    console.log(JSON.stringify(cleantree, null, 2));
     jsonfile.writeFile("tree.json", cleantree, function(err) {
         console.error(err); 
     });
@@ -50,8 +49,6 @@ function buildTree(obj) {
         for (var w = 0; w < question.characteristics.length; w++) {
             var currentProperty = question.characteristics[w];
 
-            console.log("\n\n\ncurrentProperty: "+currentProperty);
-
             /* Add if root is empty */
             if (!rootset) {
                 var newObj = {name: '', parent: "null", children: [null, null]};
@@ -65,49 +62,34 @@ function buildTree(obj) {
                 continue;
             }
 
-            console.log("\n\nDONE\n\n");
 
             console.log(prevpt);
             console.log(currpt);
             while (currpt !== null && currpt.name !== currentProperty) {
                 if (containsProperty(question.characteristics, currpt.name)) {
-                    console.log("RIGHT");
                     //RIGHT
                     prevpt = currpt;
                     currpt = currpt.children[1];
-                    console.log("prevpt has now: "+JSON.stringify(prevpt));
-                    console.log("currpt has now: "+JSON.stringify(currpt));
                 } else {
                     //LEFT
                     console.log("LEFT");
                     prevpt = currpt;
                     currpt = currpt.children[0];
-                    console.log("prevpt has now: "+JSON.stringify(prevpt));
-                    console.log("currpt has now: "+JSON.stringify(currpt));
                 }
             }
 
-            console.log("\n\nDONE\n\n");
             
             if (currpt === null) {
-                console.log("prevpt: "+JSON.stringify(prevpt, 2, null));
-                console.log("currpt: "+JSON.stringify(currpt, 2, null));
                 var newNode = {name: '', parent: "null", children: [null, null]};
                 newNode.name = currentProperty;
                
-                console.log("making node with name: "+newNode.name);
 
                 newNode.parent = prevpt.name;
 
                 currpt = newNode;
-                console.log("====");
-                console.log(question.characteristics);
-                console.log(prevpt.name);
                 if (containsProperty(question.characteristics, prevpt.name)) {
-                    console.log("connected to right of "+prevpt.name);
                     prevpt.children[1] = newNode;
                 } else {
-                    console.log("connected to left of "+prevpt.name);
                     prevpt.children[0] = newNode;
                 }
             }
@@ -125,7 +107,6 @@ function buildTree(obj) {
             prevpt = currpt;
             currpt = currpt.children[0];
         }
-        console.log("ADD LEAF");
 
         var newLeaf = {name: '', parent: [], children: []};
         newLeaf.name = question.name;
